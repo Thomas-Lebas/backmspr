@@ -13,7 +13,7 @@ RUN dotnet restore
 # Construction de l'application
 RUN dotnet publish -c Release -o out
 
-# Étape d'exécution
+# Étape d'exécution test
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
 
