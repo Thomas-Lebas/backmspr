@@ -1,12 +1,15 @@
-name: CI/CD
+name: CI
 
 on:
   push:
     branches:
       - main  # Modifier en fonction de votre branche principale
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,15 +29,3 @@ jobs:
 
       - name: Run tests
         run: dotnet test --configuration Release --no-build
-
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Deploy to Azure App Service
-        uses: azure/webapps-deploy@v2
-        with:
-          app-name: 'backmspr'  # Remplacez par le nom de votre application Azure App Service
-          publish-profile: ${{ secrets.AZURE_APP_SERVICE_PUBLISH_PROFILE }}
-          package: .
