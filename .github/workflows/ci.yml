@@ -19,7 +19,7 @@ jobs:
       - name: Set up .NET
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: '5.x'  # Modifier en fonction de la version de .NET que vous utilisez
+          dotnet-version: '6.0.x'  # Modifier en fonction de la version de .NET que vous utilisez
 
       - name: Restore NuGet packages
         run: dotnet restore
