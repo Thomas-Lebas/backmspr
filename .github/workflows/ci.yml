@@ -27,7 +27,12 @@ jobs:
       - name: Run tests
         run: dotnet test --configuration Release --no-build
 
-      - name: Publish to Azure App Service
+      - name: Login to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'backmspr'  # Remplacez par le nom de votre application Azure App Service
