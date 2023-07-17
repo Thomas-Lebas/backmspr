@@ -30,7 +30,6 @@ jobs:
       - name: Publish to Azure App Service
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'your-app-name'  # Remplacez par le nom de votre application Azure App Service
-          slot-name: 'production'  # Remplacez par le nom de votre slot de déploiement (facultatif)
+          app-name: 'backmspr'  # Remplacez par le nom de votre application Azure App Service
           publish-profile: ${{ secrets.AZURE_APP_SERVICE_PUBLISH_PROFILE }}
           package: .
