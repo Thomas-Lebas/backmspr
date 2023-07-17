@@ -1,15 +1,12 @@
-name: CI
+name: CI/CD
 
 on:
   push:
     branches:
       - main  # Modifier en fonction de votre branche principale
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,3 +26,11 @@ jobs:
 
       - name: Run tests
         run: dotnet test --configuration Release --no-build
+
+      - name: Publish to Azure App Service
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'your-app-name'  # Remplacez par le nom de votre application Azure App Service
+          slot-name: 'production'  # Remplacez par le nom de votre slot de déploiement (facultatif)
+          publish-profile: ${{ secrets.AZURE_APP_SERVICE_PUBLISH_PROFILE }}
+          package: .
